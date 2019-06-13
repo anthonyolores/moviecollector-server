@@ -41,6 +41,17 @@ app.post("/movies/popular", function(req, res){
     })
 });
 
+//get popular movies
+app.post("/movies/top_rated", function(req, res){
+    axios.get(movieUrl + "top_rated" + movieApiKey)
+    .then(response => {
+        res.send(response.data);
+    })
+    .catch(error => {
+        res.send(null);
+    })
+});
+
 
 var port = process.env.PORT || 8085;
   //start server
