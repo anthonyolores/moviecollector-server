@@ -63,6 +63,17 @@ app.post("/movies/search", function(req, res){
      })
  });
 
+ //get movie detail
+ app.post("/movies/detail", function(req, res){
+    axios.get(movieUrl + req.query.id + movieApiKey)
+    .then(response => {
+        res.send(response.data);
+    })
+    .catch(error => {
+        res.send(null);
+    })
+});
+
  //discover movies
 app.post("/movies/discover", function(req, res){
     axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=2670c7f2a19f27bddd5ef60802a27d1c&language=en-US&page=1")
@@ -87,7 +98,7 @@ app.post("/keywords", function(req, res){
 });
 
 var port = process.env.PORT || 8085;
-  //start server
+//start server
 app.listen(port, function () {
     console.log("Express server listening on port " + port);
 });
